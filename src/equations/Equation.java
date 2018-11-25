@@ -172,7 +172,8 @@ public class Equation {
     private void simplifyIfPossible(Terms existings, Equation model) {
     	int gcd = GCD.gcd(coefs);
 
-    	if (coefs.size() > 1 && Math.abs(gcd) != 1) {
+    	if (coefs.size() > 1 && Math.abs(gcd) > 1) {
+    		gcd = Math.abs(gcd);
     		this.b /= gcd;
     		Iterator<Term> itTerms = this.terms.messyIterator();
     		List<Term> toRemove = new ArrayList<>();
@@ -185,9 +186,10 @@ public class Equation {
     			toAdd.add(new Term(t.getA() / gcd, t.getI()));
     			
     			if (model == this && existings.get(t.getI()) != null) {
-    				System.out.println("ALORS " + existings.get(t.getI()).getA() + " EST DEVENU " + t.getA() / gcd);
+    				System.out.println("ALORS " + existings.get(t.getI()).getA() + " EST DEVENU " + t.getA() + " PUIS " + t.getA() / gcd);
     				
     				if (Math.abs(existings.get(t.getI()).getA()) <= Math.abs(t.getA() / gcd)) {
+    					// System.out.println(this);
     					System.out.println("PROBLEME !!!!!!!!!!!!!!!!!!!!!!!");
     					System.exit(1);
     				}
