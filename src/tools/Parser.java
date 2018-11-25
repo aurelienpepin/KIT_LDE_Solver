@@ -42,12 +42,12 @@ public class Parser {
         String line;
         
         // Read size of system
-        List<Integer> sizes = this.extractIntegers(bf.readLine());
+        List<Long> sizes = this.extractIntegers(bf.readLine());
         system = this.setSizeOfSystem(sizes);
         
         // Add the equations      
         while ((line = bf.readLine()) != null) {
-            List<Integer> numbers = extractIntegers(line);
+            List<Long> numbers = extractIntegers(line);
             if (!system.addAndPrepareEquation(numbers)) {
             	return null;
             }
@@ -56,7 +56,7 @@ public class Parser {
         return system;
     }
     
-    private EqSystem setSizeOfSystem(List<Integer> sizes) {
+    private EqSystem setSizeOfSystem(List<Long> sizes) {
         if (sizes.size() != 2) {
             throw new RuntimeException("Bad first line.");
         }
@@ -64,12 +64,12 @@ public class Parser {
         return new EqSystem(sizes.get(0), sizes.get(1));
     }
     
-    private List<Integer> extractIntegers(String string) {
-        List<Integer> numbers = new ArrayList<>();
+    private List<Long> extractIntegers(String string) {
+        List<Long> numbers = new ArrayList<>();
         String[] strings = string.split("\\s");
         
         for (String numberToConv : strings) {
-            numbers.add(Integer.parseInt(numberToConv));
+            numbers.add(Long.parseLong(numberToConv));
         }
         
         return numbers;

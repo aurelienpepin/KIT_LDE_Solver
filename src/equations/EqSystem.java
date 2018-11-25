@@ -1,5 +1,6 @@
 package equations;
 
+import static java.lang.Math.toIntExact;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,17 +18,17 @@ import java.util.Iterator;
  */
 public class EqSystem {
     
-    private final int numberOfVars;
-    private int numberOfTotalVars;
+    private final long numberOfVars;
+    private long numberOfTotalVars;
     
     private final List<Equation> equations;
-    private final HashMap<Integer, Substitute> substitutes;
+    private final HashMap<Long, Substitute> substitutes;
     private Stack<Substitute> results;
     
     private int compteur = 0;
     
-    public EqSystem(int numberOfEquations, int numberOfVars) {
-        this.equations = new ArrayList<>(numberOfEquations);
+    public EqSystem(long numberOfEquations, long numberOfVars) {
+        this.equations = new ArrayList<>(toIntExact(numberOfEquations));
         this.substitutes = new HashMap<>();
         this.results = new Stack<>();
         
@@ -44,7 +45,7 @@ public class EqSystem {
     	// while (numberOfTotalVars - this.substitutes.size() > 2) {
     	while (equations.size() >= 1/* && T < 200000000 */) {
     		try {
-				TimeUnit.MILLISECONDS.sleep(500);
+				TimeUnit.MILLISECONDS.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -116,7 +117,7 @@ public class EqSystem {
     }
     
     private Equation findFollowingEquation() {
-    	int minNorm = Integer.MAX_VALUE;
+    	long minNorm = Long.MAX_VALUE;
     	Equation model = null;
     	
     	for (Equation equation : equations) {
@@ -130,13 +131,13 @@ public class EqSystem {
     }
     
     private void buildSolutions() {
-    	HashMap<Integer, Integer> solutions = new HashMap<>();
+    	HashMap<Long, Long> solutions = new HashMap<>();
     	
     	while (!this.results.isEmpty()) {
     		Substitute sub = this.results.pop();
-    		int var = sub.getWillReplace();
+    		long var = sub.getWillReplace();
     		
-    		int sol = 0;
+    		long sol = 0;
     		sol -= sub.getConstant();
     		
     		Iterator<Term> itTerms = sub.getTerms().messyIterator();
@@ -151,7 +152,7 @@ public class EqSystem {
     	}
     	
     	System.out.println("oui *************************");
-    	System.out.println(solutions.size());
+    	System.out.println(solutions);
     }
     
     /**
@@ -159,7 +160,7 @@ public class EqSystem {
      * @param numbers
      * @return
      */
-    public boolean addAndPrepareEquation(List<Integer> numbers) {
+    public boolean addAndPrepareEquation(List<Long> numbers) {
         Equation equation = new Equation(numbers);
         
         if (equation.isSatisfiable()) {

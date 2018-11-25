@@ -9,7 +9,7 @@ import java.util.TreeSet;
 public class Terms implements Iterable<Term> {
 
 	private final SortedSet<Term> set;
-	private final Map<Integer, Term> map;
+	private final Map<Long, Term> map;
 	
 	public Terms() {
 		this.set = new TreeSet<>(new TermComparator());
@@ -29,7 +29,7 @@ public class Terms implements Iterable<Term> {
 		return this.set.first();
 	}
 	
-	public Term get(int i) {
+	public Term get(long i) {
 		return this.map.get(i);
 	}
 	
@@ -41,7 +41,7 @@ public class Terms implements Iterable<Term> {
 		return this.set.remove(term);
 	}
 	
-	public boolean remove(int i) {
+	public boolean remove(long i) {
 		Term term = this.map.remove(i);
 		
 		if (term == null)

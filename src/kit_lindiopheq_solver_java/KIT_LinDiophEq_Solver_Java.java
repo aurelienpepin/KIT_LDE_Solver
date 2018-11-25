@@ -14,7 +14,7 @@ public class KIT_LinDiophEq_Solver_Java {
      */
     public static void main(String[] args) {
         Parser parser = new Parser();
-        EqSystem system = parser.parse("C:\\Users\\Aurelien\\Documents\\KIT\\Cours\\Entscheidungsverfahren\\Programme\\KIT_LinDiophEq_Solver\\examples\\lin-eq-ex\\ex-10-10-2.leq");
+        EqSystem system = parser.parse("C:\\Users\\Aurelien\\Documents\\KIT\\Cours\\Entscheidungsverfahren\\Programme\\KIT_LinDiophEq_Solver\\examples\\lin-eq-ex\\ex-100-100-1.leq");
         
         if (system == null) {
         	System.out.println("UNSAT");

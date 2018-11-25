@@ -8,23 +8,23 @@ import tools.ModPrime;
 
 public class Substitute {
 
-	private final int constant;
+	private final long constant;
 	private final Terms terms;
 	
-	private final int newVar;
-	private final int willReplace;
-	private final int m;
+	private final long newVar;
+	private final long willReplace;
+	private final long m;
 	
 	/**
 	 * Create a substitute which introduces a new variable.
 	 * @param equation
 	 * @param newVar
 	 */
-	public Substitute(Equation equation, int newVar) {
+	public Substitute(Equation equation, long newVar) {
 		System.out.println("EQCHOISIE: " + equation);
 		
 		Term first = equation.getTerms().first();
-		int a = first.getA();
+		long a = first.getA();
 		
 		System.out.println("INFOS1: first=" + first);
 		
@@ -42,7 +42,7 @@ public class Substitute {
 		this.terms = new Terms();
 		Iterator<Term> itTerms = equation.getTerms().messyIterator();
 
-		int newVal;
+		long newVal;
 		while (itTerms.hasNext()) {
 			Term t = itTerms.next();	
 			
@@ -68,7 +68,7 @@ public class Substitute {
 		System.out.println("EQCHOISIE: " + equation);
 		
 		Term first = equation.getTerms().first();
-		int a = first.getA();
+		long a = first.getA();
 		
 		System.out.println("INFOS1: first=" + first);
 		
@@ -86,7 +86,7 @@ public class Substitute {
 		this.terms = new Terms();
 		Iterator<Term> itTerms = equation.getTerms().messyIterator();
 
-		int newVal;
+		long newVal;
 		while (itTerms.hasNext()) {
 			Term t = itTerms.next();	
 			
@@ -103,23 +103,23 @@ public class Substitute {
 	}
 	
 	
-	public int getWillReplace() {
+	public long getWillReplace() {
 		return willReplace;
 	}
 
-	public int getConstant() {
+	public long getConstant() {
 		return constant;
 	}
 	
-	public Term get(int i) {
+	public Term get(long i) {
 		return terms.get(i);
 	}
 
-	public int getNewVar() {
+	public long getNewVar() {
 		return newVar;
 	}
 	
-	public int getM() {
+	public long getM() {
 		return m;
 	}
 

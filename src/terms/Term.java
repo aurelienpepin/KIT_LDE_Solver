@@ -6,19 +6,19 @@ package terms;
  */
 public class Term {
     
-    private int a;
-    private final int i;
+    private long a;
+    private final long i;
     
-    public Term(int a, int i) {
+    public Term(long a, long i) {
 		this.a = a;
 		this.i = i;
 	}
 
-	public int getA() {
+	public long getA() {
 		return a;
 	}
 
-	public int getI() {
+	public long getI() {
 		return i;
 	}
 	
@@ -26,20 +26,20 @@ public class Term {
 		this.a *= -1;
 	}
 	
-	public void setA(int newA) {
+	public void setA(long newA) {
 		this.a = newA;
 	}
 	
 	@Override
 	public String toString() {
 		return this.getA() + "·x" + this.getI();
-	}	
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + i;
+		result = prime * result + (int) (i ^ (i >>> 32));
 		return result;
 	}
 
@@ -55,5 +55,5 @@ public class Term {
 		if (i != other.i)
 			return false;
 		return true;
-	}
+	}	
 }

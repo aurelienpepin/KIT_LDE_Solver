@@ -10,9 +10,9 @@ public class GCD {
 	 * @param b
 	 * @return
 	 */
-	public static int gcd(int a, int b) {
+	public static long gcd(long a, long b) {
 	    while (b != 0) {
-	        int t = a;
+	        long t = a;
 	        a = b;
 	        b = t % b;
 	    }
@@ -24,7 +24,7 @@ public class GCD {
 	 * @param a
 	 * @return
 	 */
-	public static int gcd(List<Integer> a) {
+	public static long gcd(List<Long> a) {
 		return a.stream().reduce((b,c) -> gcd(b,c)).get();
 	}
 }

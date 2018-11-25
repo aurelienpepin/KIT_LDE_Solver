@@ -23,14 +23,14 @@ import tools.ModPrime;
  */
 public class Equation {
 
-	private int b;
+	private long b;
     private final Terms terms;
-    private final List<Integer> coefs;
+    private final List<Long> coefs;
     
-    private final int gcdA;
+    private final long gcdA;
     private boolean sat;
     
-    public Equation(List<Integer> numbers) {
+    public Equation(List<Long> numbers) {
     	this.coefs = new ArrayList<>();
     	this.terms = new Terms();
     	
@@ -41,7 +41,7 @@ public class Equation {
     	this.gcdA = this.groupCoefs(numbers);
     	
     	// Prepare if satisfiable
-    	int numberOfTerms = numbers.get(0);
+    	long numberOfTerms = numbers.get(0);
     	
     	// Normalization
     	if ((sat = this.isSatisfiable())) {
@@ -57,8 +57,8 @@ public class Equation {
     	}
 	}
     
-    private int groupCoefs(List<Integer> numbers) {
-    	int numberOfTerms = numbers.get(0);
+    private long groupCoefs(List<Long> numbers) {
+    	long numberOfTerms = numbers.get(0);
     	
     	for (int i = 0; i < numberOfTerms - 1; ++i) {
     		this.coefs.add(numbers.get(2 * i + 1));
@@ -105,7 +105,7 @@ public class Equation {
      * Get the substitute (equation from the smallest a_k).
      * @return
      */
-    public Substitute generateSubstitute(int nextVar) {
+    public Substitute generateSubstitute(long nextVar) {
     	return new Substitute(this, nextVar);
     }
     
@@ -133,7 +133,7 @@ public class Equation {
 		List<Term> toAdd = new ArrayList<>();
 		
 		Terms existings = new Terms();
-		int newA;
+		long newA;
 		
 		while (itTerms.hasNext()) {
 			Term t = itTerms.next();
@@ -170,7 +170,7 @@ public class Equation {
      * Use the GCD to see if the equation is simplifiable.
      */
     private void simplifyIfPossible(Terms existings, Equation model) {
-    	int gcd = GCD.gcd(coefs);
+    	long gcd = GCD.gcd(coefs);
 
     	if (coefs.size() > 1 && Math.abs(gcd) > 1) {
     		gcd = Math.abs(gcd);
@@ -191,7 +191,7 @@ public class Equation {
     				if (Math.abs(existings.get(t.getI()).getA()) <= Math.abs(t.getA() / gcd)) {
     					// System.out.println(this);
     					System.out.println("PROBLEME !!!!!!!!!!!!!!!!!!!!!!!");
-    					System.exit(1);
+    					// System.exit(1);
     				}
     			}
     		}
@@ -223,7 +223,7 @@ public class Equation {
 	}
     
 
-	public int getB() {
+	public long getB() {
 		return b;
 	}
 
