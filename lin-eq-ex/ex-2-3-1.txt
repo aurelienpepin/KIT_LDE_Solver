@@ -1,0 +1,12 @@
+(set-option :produce-models true)
+(set-logic QF_LIA)
+(declare-const x1 Int)
+(declare-const x2 Int)
+(declare-const x3 Int)
+(assert
+	(and
+		(= (+ (* 7 x1) (* 12 x2) (* 31 x3) ) 17)
+		(= (+ (* 3 x1) (* 5 x2) (* 14 x3) ) 7)
+))
+(check-sat)
+(get-model)

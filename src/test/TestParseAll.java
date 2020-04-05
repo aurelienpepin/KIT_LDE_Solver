@@ -10,7 +10,7 @@ public class TestParseAll {
 	public static void main(String[] args) {
 		Parser parser = new Parser();
 		
-		File folder = new File("C:\\Users\\Aurelien\\Documents\\KIT\\Cours\\Entscheidungsverfahren\\Programme\\KIT_LinDiophEq_Solver\\examples\\lin-eq-ex");
+		File folder = new File(args[0]);
 		File[] listOfFiles = folder.listFiles();
 		
 		for (int i = 0; i < listOfFiles.length; i++) {
